@@ -16,10 +16,10 @@ class BaseModel():
         if kwargs:
             for key, val in kwargs.items():
                 self.__dict__[key] = val
-            if self.created_at:
+            if hasattr(self, 'created_at'):
                 self.created_at = datetime.strptime(self.created_at,
                                                     '%Y-%m-%dT%H:%M:%S.%f')
-            if self.updated_at:
+            if hasattr(self, 'updated_at'):
                 self.updated_at = datetime.strptime(self.updated_at,
                                                     '%Y-%m-%dT%H:%M:%S.%f')
         if not hasattr(self, 'id'):
