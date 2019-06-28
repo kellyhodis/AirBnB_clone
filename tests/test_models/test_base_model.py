@@ -31,7 +31,7 @@ class TestBaseModel(unittest.TestCase):
         assert type(b.updated_at) == datetime.datetime
 
     def test_str(self):
-        ''' Test __str__ method. '''
+        ''' Test __str__ method avg use case. '''
         captured_output = StringIO()
         sys.stdout = captured_output
         print(b)
@@ -41,4 +41,31 @@ class TestBaseModel(unittest.TestCase):
         assert captured_output == expected
 
     def test_save(self):
-        ''' Test save method. '''
+        ''' Test save method avg use case. '''
+        old_update_time = b.updated_at
+        b.save()
+        assert b.updated_at != old_update_time
+
+    def test_save_args(self):
+        ''' Test save method with arg provided. '''
+        with self.assertRaises(TypeError) as context:
+            b.save('time n place')
+        self.assertTrue('2 were given' in str(context.exception))
+
+    def test_to_dict(self):
+        ''' Test to_dict avg use case. '''
+        b_dict = b.to_dict()
+        assert 'id' in b_dict
+        assert type(b_dict['id']) == str
+        assert 'created_at' in b_dict
+        assert type(b_dict['created_at']) == str
+        assert 'updated_at' in b_dict
+        assert type(b_dict['updated_at']) == str
+        assert '__class__' in b_dict
+        assert type(b_dict['__class__']) == str
+
+    def test_to_dict_args(self):
+        ''' Test to_dict method with arg provided. '''
+        with self.assertRaises(TypeError) as context:
+            b.to_dict('mist')
+        self.assertTrue('2 were given' in str(context.exception))
