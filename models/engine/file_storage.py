@@ -21,18 +21,21 @@ class FileStorage():
 
     def save(self):
         ''' Serialize __objects to JSON file. '''
+        new_dict = {}
         with open(self.__file_path, 'w+') as file:
             for key, val in self.__objects.items():
-                self.__objects[key] = val.to_dict()
-            file.write(json.dumps(self.__objects))
+                new_dict[key] = val.to_dict()
+            file.write(json.dumps(new_dict))
 
     def reload(self):
         ''' Deserialize JSON file to __objects. '''
         try:
-            with open(self.__file_path) as file:
+            with open(self.__file_path, 'r') as file:
                 j = json.loads(file.read())
+            new_dict = {}
             for key, val in j.items():
                 ob = eval(val['__class__'])(**val)
-                self.new(ob)
+                new_dict[key] = ob
+            self.__objects = new_dict
         except FileNotFoundError:
             pass
