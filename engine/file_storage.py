@@ -5,6 +5,7 @@
 import json
 from models.base_model import BaseModel
 
+
 class FileStorage():
     ''' Define all attributes / methods of FileStorage class. '''
     __file_path = 'file.json'
