@@ -5,25 +5,19 @@
         BaseModel - Define all common attributes/methods for other classes.
 '''
 import uuid
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import __future__
->>>>>>> 1ba40545b5f95be48a58e79cb77f84b45ff92e12
-=======
->>>>>>> ced8d59f8bc6fcccef7e93770b3324d501e209d0
 from datetime import datetime
 import models
 
+
 class BaseModel():
     ''' Define all common attributes/methods for other classes. '''
-<<<<<<< HEAD
     def __init__(self):
         ''' Initialize instance of BaseModel. '''
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-=======
+
     def __init__(self, *args, **kwargs):
         ''' Initialize instance of BaseModel. '''
         if kwargs:
@@ -41,12 +35,8 @@ class BaseModel():
             self.created_at = datetime.now()
         if not hasattr(self, 'updated_at'):
             self.updated_at = datetime.now()
-<<<<<<< HEAD
->>>>>>> 1ba40545b5f95be48a58e79cb77f84b45ff92e12
-=======
         if not kwargs:
             models.storage.new(self)
->>>>>>> ced8d59f8bc6fcccef7e93770b3324d501e209d0
 
     def __str__(self):
         ''' Return string representation of BaseModel instance. '''
