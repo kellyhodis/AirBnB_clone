@@ -7,10 +7,8 @@ from models.base_model import BaseModel
 
 class FileStorage():
     ''' Define all attributes / methods of FileStorage class. '''
-    def __init__(self):
-        ''' Initialize instance of FileStorage '''
-        self.__file_path = 'file.json'
-        self.__objects = {}
+    __file_path = 'file.json'
+    __objects = {}
 
     def all(self):
         ''' Return __objects attr. '''
@@ -18,11 +16,13 @@ class FileStorage():
 
     def new(self, obj):
         ''' Adds obj entry in __objects. '''
-        self.__objects[obj.__class__.__name__ + '.' + obj.id] = obj.to_dict()
+        self.__objects[obj.__class__.__name__ + '.' + obj.id] = obj
 
     def save(self):
         ''' Serialize __objects to JSON file. '''
         with open(self.__file_path, 'w+') as file:
+            for key, val in self.__objects.items():
+                self.__objects[key] = val.to_dict()
             file.write(json.dumps(self.__objects))
 
     def reload(self):
@@ -30,8 +30,8 @@ class FileStorage():
         try:
             with open(self.__file_path) as file:
                 j = json.loads(file.read())
-                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                print(j)
-                self.__objects = j
+            for key, val in j.items():
+                ob = eval(val['__class__'])(**val)
+                self.new(ob)
         except FileNotFoundError:
             pass
