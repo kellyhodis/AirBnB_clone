@@ -5,9 +5,8 @@
         BaseModel - Define all common attributes/methods for other classes.
 '''
 import uuid
-import __future__
 from datetime import datetime
-
+import models
 
 class BaseModel():
     ''' Define all common attributes/methods for other classes. '''
@@ -28,6 +27,8 @@ class BaseModel():
             self.created_at = datetime.now()
         if not hasattr(self, 'updated_at'):
             self.updated_at = datetime.now()
+        if not kwargs:
+            models.storage.new(self)
 
     def __str__(self):
         ''' Return string representation of BaseModel instance. '''
@@ -37,6 +38,7 @@ class BaseModel():
     def save(self):
         ''' Update updated_at attr. '''
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         ''' Return dictionary of instance attributes. '''
