@@ -45,7 +45,7 @@ class TestBaseModel(unittest.TestCase):
         str_return = self.b.__str__()
         assert type(str_return) == str
 
-    def test_save(self):
+    def test_save_new_time(self):
         ''' Test save method avg use case. '''
         old_update_time = self.b.updated_at
         self.b.save()
@@ -84,3 +84,5 @@ class TestBaseModel(unittest.TestCase):
         assert hasattr(c, 'lover')
         assert c.breathe == 'out'
         assert c.lover == 'mine'
+
+
