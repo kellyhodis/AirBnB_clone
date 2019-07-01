@@ -4,6 +4,7 @@
     Attributes:
         Review - Subclass of BaseModel.
 '''
+from models.base_model import BaseModel
 
 
 class Review(BaseModel):

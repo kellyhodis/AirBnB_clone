@@ -4,6 +4,7 @@
     Attributes:
         City - Subclass of BaseModel.
 '''
+from models.base_model import BaseModel
 
 
 class City(BaseModel):
