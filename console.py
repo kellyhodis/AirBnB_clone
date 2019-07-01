@@ -5,6 +5,12 @@ import cmd
 import models
 import inspect
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.city import City
+from models.amenity import Amenity
 from models.engine.file_storage import FileStorage
 
 
@@ -30,10 +36,16 @@ class HBNBCommand(cmd.Cmd):
             Args:
                 line - name of class to make new instance of.
         '''
-        new_ins = eval(line)()
-        models.storage.new(new_ins)
-        models.storage.save()
-        print(new_ins.id)
+        if line:
+            try:
+                new_ins = eval(line)()
+                models.storage.new(new_ins)
+                models.storage.save()
+                print(new_ins.id)
+            except NameError:
+                print("** class doesn't exist **")
+        else:
+            print('** class name missing **')
 
     def do_show(self, line):
         ''' Print string repr of instance. '''
@@ -43,6 +55,9 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(' ')
             try:
                 var = eval(args[0])()
+                del models.storage._FileStorage__objects[var.__class__.__name__ + '.' + var.id]
+                models.storage.save()
+
             except:
                 print("** class doesn't exist **")
                 return
@@ -62,28 +77,51 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         ''' Delete instance of a given class. '''
-        args = line.split(' ')
-        del models.storage._FileStorage__objects[args[0] + '.' + args[1]]
-        models.storage.save()
+        args = list(filter(None, line.split(' ')))
+        if len(args) == 0:
+            print('** class name missing **')
+        elif len(args) >= 1:
+            try:
+                _ = eval(args[0])()
+                del models.storage._FileStorage__objects[_.__class__.__name__ + '.' + _.id]
+                models.storage.save()
+            except NameError:
+                print("** class doesn't exist **")
+                return
+            try:
+                if args[0] + '.' + args[1] not in models.storage._FileStorage__objects:
+                    print('** no instance found **')
+                    return
+                else:
+                    del models.storage._FileStorage__objects[args[0] + '.' + args[1]]
+                    models.storage.save()
+            except IndexError:
+                print('** instance id missing **')
+                return
 
-    def do_all(self, class_name=''):
+
+    def do_all(self, line):
         ''' Print all string representations of all instances.
 
             Args:
                 class_name - Optional class.
         '''
         lst = []
-        for obj in models.storage._FileStorage__objects.values():
-            if class_name:
-                try:
-                    var = eval(args[0])()
-                except:
-                    print("** class doesn't exist **")
-                    return
-                if class_name == obj.__class__.__name__:
-                    lst.append(str(obj))
-            else:
+        if line != '':
+            args = line.split(' ')
+            try:
+                var = eval(args[0])()
+                del models.storage._FileStorage__objects[var.__class__.__name__ + '.' + var.id]
+                models.storage.save()
+            except:
+                print("** class doesn't exist **")
+                return 
+        for identity, obj in models.storage._FileStorage__objects.items():
+            if line == '':
                 lst.append(str(obj))
+            else:
+                if args[0] == obj.__class__.__name__:
+                    lst.append(str(obj))
         print(lst)
 
     def do_update(self, line):
@@ -94,6 +132,8 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(' ')
             try:
                 var = eval(args[0])()
+                del models.storage._FileStorage__objects[var.__class__.__name__ + '.' + var.id]
+                models.storage.save()
             except:
                 print("** class doesn't exist **")
                 return
