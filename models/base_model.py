@@ -5,11 +5,19 @@
         BaseModel - Define all common attributes/methods for other classes.
 '''
 import uuid
+import __future__
 from datetime import datetime
 import models
 
+
 class BaseModel():
     ''' Define all common attributes/methods for other classes. '''
+    def __init__(self):
+        ''' Initialize instance of BaseModel. '''
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
+
     def __init__(self, *args, **kwargs):
         ''' Initialize instance of BaseModel. '''
         if kwargs:

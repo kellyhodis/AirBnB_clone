@@ -4,7 +4,7 @@ base.base_model.
 '''
 import unittest
 from models.base_model import BaseModel
-from engine.file_storage import FileStorage
+from models.engine.file_storage import FileStorage
 import models
 from io import StringIO
 import sys
@@ -32,8 +32,8 @@ class TestFileStorage(unittest.TestCase):
 
     def test_storage_objects(self):
         ''' Test that __objects attr is a dictionary. '''
-        assert type(models.storage.__class__.__objects) == dict
+        assert type(models.storage.__class__._FileStorage__objects) == dict
 
     def test_obj_in_dict(self):
         ''' Check if object is in __objects after BaseModel init. '''
-        assert (self.b.__class__.__name__ + '.' + str(self.b.id)) in models.storage.__objects
+        assert (self.b.__class__.__name__ + '.' + str(self.b.id)) in models.storage._FileStorage__objects
