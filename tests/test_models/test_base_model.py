@@ -35,10 +35,6 @@ class TestBaseModel(unittest.TestCase):
         ''' Validate updated_at attr. '''
         assert type(self.b.updated_at) == datetime.datetime
 
-    def test_created_updated_same(self):
-        ''' Test whether or not created_at and updated_at are the same. '''
-        assert self.b.created_at == self.b.updated_at
-
     def test_different_ids(self):
         ''' Test whether or not two instances have different IDs. '''
         c = BaseModel()
@@ -79,3 +75,12 @@ class TestBaseModel(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             self.b.to_dict('mist')
         self.assertTrue('2 were given' in str(context.exception))
+
+    def test_init_parameters(self):
+        ''' Test __init__ method with kwargs provided. '''
+        d = {'breathe': 'out', 'lover': 'mine'}
+        c = BaseModel(**d)
+        assert hasattr(c, 'breathe')
+        assert hasattr(c, 'lover')
+        assert c.breathe == 'out'
+        assert c.lover == 'mine'
