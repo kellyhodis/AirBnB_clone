@@ -25,10 +25,16 @@ class TestFileStorage(unittest.TestCase):
     def test_attrs(self):
         ''' Test that self.f has the correct attrs. '''
         f = FileStorage()
+        assert type(f) is FileStorage
         assert hasattr(f, '_FileStorage__file_path')
         assert type(f._FileStorage__file_path) == str
         assert hasattr(f, '_FileStorage__objects')
         assert type(f._FileStorage__objects) == dict
+        for key in f._FileStorage__objects.keys():
+            assert type(key) is str
+        for val in f._FileStorage__objects.values():
+            name = val.__class__.__name__
+            assert name == "BaseModel" or name.issubclass(BaseModel)
 
     def test_storage_var(self):
         ''' Test that storage is a FileStorage variable. '''
@@ -36,17 +42,38 @@ class TestFileStorage(unittest.TestCase):
 
     def test_new_method(self):
         ''' Test the new method. '''
+        obj_len_keys = len(models.storage._FileStorage__objects.keys())
+        obj_len_vals = len(models.storage._FileStorage__objects.values())
+        assert obj_len_keys == obj_len_vals
         new = BaseModel()
         assert new in models.storage._FileStorage__objects.values()
-
-    def test_save_method(self):
-        ''' Test the save method. '''
-        new = BaseModel()
+        assert len(models.storage._FileStorage__objects.keys()) == \
+            obj_len_keys + 1
+        assert len(models.storage._FileStorage__objects.values()) == \
+            obj_len_vals + 1
         assert 'BaseModel.' + new.id in \
             models.storage._FileStorage__objects.keys()
 
+    def test_save_method(self):
+        ''' Test the save method. '''
+        file_len = 0
+        with open(models.storage._FileStorage__file_path) as file:
+            file_len = len(file.read())
+        new = BaseModel()
+        models.storage.save()
+        assert 'BaseModel.' + new.id in \
+            models.storage._FileStorage__objects.keys()
+        with open(models.storage._FileStorage__file_path) as file:
+            new_len = len(file.read())
+        assert new_len > file_len
+
     def test_reload_method(self):
         ''' Test the reload method. '''
+        new = BaseModel()
+        models.storage.save()
+        models.storage._FileStorage__objects = {}
+        models.storage.reload()
+        assert len(models.storage._FileStorage__objects) != 0
         # check that __objects is empty and then
         # if the file path exists check that __objects isn't empty after reload
 
