@@ -24,7 +24,7 @@ To use the console, type the desired command into the terminal and hit `ENTER`.
 | `all` | Show all objects      | `all [OBJ TYPE]` |
 | `update` | Update object attribute      | `update <OBJ TYPE> <OBJ ID> <ATTR NAME> <ATTR VALUE>` |
 | `help` | Display command info      | `help [COMMAND]` |
-| `quit` | Exit the console      | `quit` |
+| `quit`, `EOF` | Exit the console      | `quit` |
 
 * Required command arguments are denoted with `< >`. Optional arguments are denoted with `[ ]`.
 * `OBJ TYPE` can be one of the following: `BaseModel`, `User`, `State`, `City`, `Place`, `Amenity`, `Review`
@@ -113,3 +113,6 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) quit
 AirBnB_clone$ 
 ```
+## Credits
+* [Kelly Hodis](https://github.com/kellyhodis)
+* [Julienne Tesoro](https://github.com/jmtes)
