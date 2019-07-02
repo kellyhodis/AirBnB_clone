@@ -32,7 +32,7 @@ To use the console, type the desired command into the terminal and hit `ENTER`.
 * `COMMAND` can be any one of the above commands.
 
 #### Examples
-* To create a City object, displaying its info, and deleting it:
+* To create a `City` object, display its info, and delete it:
 ```
 AirBnB_clone$ ./console.py
 (hbnb) create City
@@ -47,7 +47,7 @@ AirBnB_clone$ ./console.py
 ** no instance found **
 (hbnb) 
 ```
-To display all working instances:
+* To display all working instances:
 ```
 (hbnb) all
 ["[City] (06179065-4084-4a4b-88e5-c67d9832bf71) {'created_at': 
@@ -66,7 +66,7 @@ datetime.datetime(2019, 7, 2, 20, 5, 57, 214700), 'id': '640fb953-9b25-4ab0-
 ba8f-2be34b887f9d', '__class__': 'Place'}"]
 (hbnb) 
 ```
-To display all working instances of the Place class:
+* To display all working instances of the `Place` class:
 ```
 (hbnb) all Place
 ["[Place] (1215e087-0c08-4795-9528-566c111278bb) {'created_at': 
@@ -79,7 +79,7 @@ datetime.datetime(2019, 7, 2, 20, 5, 54, 665353), 'id':
 'Place'}"]
 (hbnb) 
 ```
-To update an attribute of an object:
+* To update the `name` attribute of a `User` object:
 ```
 (hbnb) create User
 4728ae45-f208-4093-82d4-dfd8ba7b4e25
@@ -96,7 +96,7 @@ datetime.datetime(2019, 7, 2, 20, 18, 34, 592964), 'name': 'juno',
 '4728ae45-f208-4093-82d4-dfd8ba7b4e25'}
 (hbnb) 
 ```
-To get information on the usage of a command:
+* To show documented commands and get information on the `quit` command:
 ```
 (hbnb) help
 
@@ -108,7 +108,7 @@ EOF  all  create  destroy  help  quit  show  update
  Quit command to exit the program. 
 (hbnb) 
 ```
-To exit the console:
+* To exit the console:
 ```
 (hbnb) quit
 AirBnB_clone$ 
