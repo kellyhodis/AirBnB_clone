@@ -25,14 +25,17 @@ class TestBaseModel(unittest.TestCase):
 
     def test_id_is_str(self):
         ''' Make sure id attr is a str. '''
+        assert hasattr(self.b, 'id')
         assert type(self.b.id) == str
 
     def test_created_at(self):
         ''' Validate created_at attr. '''
+        assert hasattr(self.b, 'created_at')
         assert type(self.b.created_at) == datetime.datetime
 
     def test_updated_at(self):
         ''' Validate updated_at attr. '''
+        assert hasattr(self.b, 'updated_at')
         assert type(self.b.updated_at) == datetime.datetime
 
     def test_different_ids(self):
