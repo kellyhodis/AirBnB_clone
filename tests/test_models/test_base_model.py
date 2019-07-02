@@ -8,6 +8,7 @@ from io import StringIO
 import sys
 import datetime
 
+
 class TestBaseModel(unittest.TestCase):
     ''' Test cases for the class BaseModel. '''
     def setUp(self):

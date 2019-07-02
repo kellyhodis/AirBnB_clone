@@ -37,4 +37,5 @@ class TestFileStorage(unittest.TestCase):
 
     def test_obj_in_dict(self):
         ''' Check if object is in __objects after BaseModel init. '''
-        assert (self.b.__class__.__name__ + '.' + str(self.b.id)) in models.storage._FileStorage__objects
+        assert (self.b.__class__.__name__ + '.' + str(self.b.id)) in \
+            models.storage._FileStorage__objects
