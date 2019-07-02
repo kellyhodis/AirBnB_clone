@@ -11,10 +11,7 @@ import sys
 import datetime
 import os.path
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 47268f779ed408443a3f3a32498cba00a40faf31
 class TestFileStorage(unittest.TestCase):
     ''' Test cases for the class FileStorage. '''
     def setUp(self):
@@ -40,4 +37,5 @@ class TestFileStorage(unittest.TestCase):
 
     def test_obj_in_dict(self):
         ''' Check if object is in __objects after BaseModel init. '''
-        assert (self.b.__class__.__name__ + '.' + str(self.b.id)) in models.storage._FileStorage__objects
+        obj = self.b.__class__.__name__ + '.' + str(self.b.id)
+        assert obj in models.storage._FileStorage__objects

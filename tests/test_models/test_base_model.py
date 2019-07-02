@@ -8,10 +8,7 @@ from io import StringIO
 import sys
 import datetime
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 47268f779ed408443a3f3a32498cba00a40faf31
 class TestBaseModel(unittest.TestCase):
     ''' Test cases for the class BaseModel. '''
     def setUp(self):

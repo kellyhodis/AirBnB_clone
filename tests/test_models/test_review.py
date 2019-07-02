@@ -4,6 +4,7 @@
 import unittest
 from models.review import Review
 
+
 class TestUser(unittest.TestCase):
     ''' Test cases for the class User. '''
     def setUp(self):
@@ -32,4 +33,3 @@ class TestUser(unittest.TestCase):
         ''' Test that self.r has attr text and that it is a str type. '''
         assert hasattr(self.r, 'text')
         assert type(self.r.text) == str
-
