@@ -11,7 +11,10 @@ import sys
 import datetime
 import os.path
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 47268f779ed408443a3f3a32498cba00a40faf31
 class TestFileStorage(unittest.TestCase):
     ''' Test cases for the class FileStorage. '''
     def setUp(self):
