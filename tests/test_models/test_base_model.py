@@ -87,3 +87,12 @@ class TestBaseModel(unittest.TestCase):
         assert hasattr(c, 'lover')
         assert c.breathe == 'out'
         assert c.lover == 'mine'
+
+    def test_instantiation(self):
+        ''' Test __init__ method with kwards provided and
+        without kwargs provided. '''
+        from models import storage
+        obj_len = len(storage._FileStorage__objects)
+        new_nd = BaseModel()
+        new_len = len(storage._FileStorage__objects)
+        assert new_len == obj_len + 1
