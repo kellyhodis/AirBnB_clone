@@ -7,7 +7,6 @@
 import uuid
 import __future__
 from datetime import datetime
-import models
 
 
 class BaseModel():
@@ -30,7 +29,8 @@ class BaseModel():
         if not hasattr(self, 'updated_at'):
             self.updated_at = datetime.now()
         if not kwargs:
-            models.storage.new(self)
+            from models import storage
+            storage.new(self)
 
     def __str__(self):
         ''' Return string representation of BaseModel instance. '''
@@ -39,8 +39,9 @@ class BaseModel():
 
     def save(self):
         ''' Update updated_at attr. '''
+        from models import storage
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         ''' Return dictionary of instance attributes. '''
