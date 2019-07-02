@@ -4,7 +4,6 @@
 import unittest
 from models.amenity import Amenity
 
-
 class TestUser(unittest.TestCase):
     ''' Test cases for the class User. '''
     def setUp(self):

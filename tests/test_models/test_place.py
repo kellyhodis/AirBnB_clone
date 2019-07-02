@@ -4,7 +4,6 @@
 import unittest
 from models.place import Place
 
-
 class TestUser(unittest.TestCase):
     ''' Test cases for the class User. '''
     def setUp(self):

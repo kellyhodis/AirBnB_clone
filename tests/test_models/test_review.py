@@ -4,7 +4,6 @@
 import unittest
 from models.review import Review
 
-
 class TestUser(unittest.TestCase):
     ''' Test cases for the class User. '''
     def setUp(self):
