@@ -1,5 +1,5 @@
 # hbnb - An AirBnB Clone
-![hbnb Logo](https://imgur.com/OilEsXV "hbnb Logo")
+![hbnb Logo](https://imgur.com/OilEsXV.png "hbnb Logo")
 
 This is a simple copy of the AirBnB website meant to instill the fundamental concepts of high-level programming.
 
