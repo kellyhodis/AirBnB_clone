@@ -1,4 +1,6 @@
 # hbnb - An AirBnB Clone
+![hbnb Logo](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUXW7JF5MT%2F20190701%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190701T231307Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=b42d50106c9425682d1c04df4ee666b93a02e42662e3fc5eaa497cf5bb964b5f "hbnb Logo")
+
 This is a simple copy of the AirBnB website meant to instill the fundamental concepts of high-level programming.
 
 ## The Console
