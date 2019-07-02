@@ -11,6 +11,7 @@ from models.review import Review
 from models.city import City
 from models.amenity import Amenity
 
+
 class FileStorage():
     ''' Define all attributes / methods of FileStorage class. '''
     __file_path = 'file.json'

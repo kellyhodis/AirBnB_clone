@@ -9,6 +9,7 @@ import __future__
 from datetime import datetime
 import models
 
+
 class BaseModel():
     ''' Define all common attributes/methods for other classes. '''
     def __init__(self, *args, **kwargs):
@@ -30,7 +31,6 @@ class BaseModel():
             self.updated_at = datetime.now()
         if not kwargs:
             models.storage.new(self)
-
 
     def __str__(self):
         ''' Return string representation of BaseModel instance. '''

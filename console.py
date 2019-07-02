@@ -55,25 +55,28 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(' ')
             try:
                 var = eval(args[0])()
-                del models.storage._FileStorage__objects[var.__class__.__name__ + '.' + var.id]
+                var_key = var.__class__.__name__ + '.' + var.id
+                del models.storage._FileStorage__objects[var_key]
                 models.storage.save()
 
-            except:
+            except NameError:
                 print("** class doesn't exist **")
                 return
             try:
                 args[1]
-            except:
+            except IndexError:
                 print("** instance id missing **")
                 return
             try:
                 models.storage._FileStorage__objects[args[0] + '.' + args[1]]
-            except:
+            except KeyError:
                 print("** no instance found **")
                 return
             else:
-                if (args[0] + '.' + args[1]) in models.storage._FileStorage__objects:
-                    print(models.storage._FileStorage__objects[args[0] + '.' + args[1]])
+                if (args[0] + '.' + args[1]) in \
+                 models.storage._FileStorage__objects:
+                    print(models.storage._FileStorage__objects[args[0] + '.' +
+                          args[1]])
 
     def do_destroy(self, line):
         ''' Delete instance of a given class. '''
@@ -83,22 +86,24 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) >= 1:
             try:
                 _ = eval(args[0])()
-                del models.storage._FileStorage__objects[_.__class__.__name__ + '.' + _.id]
+                del models.storage._FileStorage__objects[_.__class__.__name__ +
+                                                         '.' + _.id]
                 models.storage.save()
             except NameError:
                 print("** class doesn't exist **")
                 return
             try:
-                if args[0] + '.' + args[1] not in models.storage._FileStorage__objects:
+                if args[0] + '.' + args[1] not in \
+                 models.storage._FileStorage__objects:
                     print('** no instance found **')
                     return
                 else:
-                    del models.storage._FileStorage__objects[args[0] + '.' + args[1]]
+                    del models.storage._FileStorage__objects[args[0] + '.' +
+                                                             args[1]]
                     models.storage.save()
             except IndexError:
                 print('** instance id missing **')
                 return
-
 
     def do_all(self, line):
         ''' Print all string representations of all instances.
@@ -111,11 +116,12 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(' ')
             try:
                 var = eval(args[0])()
-                del models.storage._FileStorage__objects[var.__class__.__name__ + '.' + var.id]
+                var_key = var.__class__.__name__ + '.' + var.id
+                del models.storage._FileStorage__objects[var_key]
                 models.storage.save()
-            except:
+            except NameError:
                 print("** class doesn't exist **")
-                return 
+                return
         for identity, obj in models.storage._FileStorage__objects.items():
             if line == '':
                 lst.append(str(obj))
@@ -132,36 +138,39 @@ class HBNBCommand(cmd.Cmd):
             args = line.split(' ')
             try:
                 var = eval(args[0])()
-                del models.storage._FileStorage__objects[var.__class__.__name__ + '.' + var.id]
+                var_key = var.__class__.__name__ + '.' + var.id
+                del models.storage._FileStorage__objects[var_key]
                 models.storage.save()
-            except:
+            except NameError:
                 print("** class doesn't exist **")
                 return
             try:
                 args[1]
-            except:
+            except IndexError:
                 print("** instance id missing **")
                 return
             try:
                 models.storage._FileStorage__objects[args[0] + '.' + args[1]]
-            except:
+            except KeyError:
                 print("** no instance found **")
                 return
             try:
                 args[2]
-            except:
+            except IndexError:
                 print("** attribute name missing **")
                 return
             try:
                 args[3]
-            except:
+            except IndexError:
                 print("** value missing **")
                 return
             args[3] = args[3][1:-1]
             if args[0] + '.' + args[1] in models.storage._FileStorage__objects:
-                obj = models.storage._FileStorage__objects[args[0] + '.' + args[1]]
+                obj = models.storage._FileStorage__objects[args[0] + '.' +
+                                                           args[1]]
                 setattr(obj, args[2], args[3])
                 models.storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
