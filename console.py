@@ -173,9 +173,10 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         ''' Overwrite default method. '''
-        line = line.split(' ')
-        elements = line[0].split('.')
+        first_line = line.split(',')
+        elements = line.split('.')
         args = elements[1].split('(')
+        # new_line = elements[1][elements[1].find("(")+1:elements[1].find(")")]
         if args[0] == 'all':
             HBNBCommand.do_all(self, elements[0])
         elif args[0] == 'count':
@@ -185,11 +186,21 @@ class HBNBCommand(cmd.Cmd):
                     count += 1
             print(count)
         elif args[0] == 'show':
-            line = elements[0] + ' ' + args[1][:-1]
+            line = elements[0] + ' ' + args[1][1:-2]
             HBNBCommand.do_show(self, line)
         elif args[0] == 'destroy':
-            line = elements[0] + ' ' + args[1][:-1]
+            line = elements[0] + ' ' + args[1][1:-2]
             HBNBCommand.do_destroy(self, line)
+        elif args[0] == 'update':
+            args[1] = args[1][:-1]
+            params = args[1].split(', ')
+            line = elements[0]
+            for p in range(len(params)):
+                if p != 2:
+                    params[p] = params[p][1:-1]
+                line = line + ' ' + params[p]
+            print(line)
+            HBNBCommand.do_update(self, line)
         else:
             pass
 
