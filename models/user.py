@@ -1,11 +1,14 @@
 #!/usr/bin/python3
-""" User class that inherits from BaseModel class.
+""" Define User class.
+
+    Attributes:
+        User - Subclass of BaseModel.
 """
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """ User class definition. """
+    """ Represent a site user and store their information. """
     email = ''
     password = ''
     first_name = ''

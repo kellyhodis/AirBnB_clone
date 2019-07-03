@@ -1,10 +1,14 @@
 #!/usr/bin/python3
-""" Place class that inherits from BaseModel. """
+""" This module defines the Place class.
+
+    Attributes:
+        Place - Subclass of BaseModel.
+"""
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """ Place class definition. """
+    """ Represent an accommodation and its features. """
     city_id = ''
     user_id = ''
     name = ''

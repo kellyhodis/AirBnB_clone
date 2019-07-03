@@ -12,7 +12,13 @@ from datetime import datetime
 class BaseModel():
     ''' Define all common attributes/methods for other classes. '''
     def __init__(self, *args, **kwargs):
-        ''' Initialize instance of BaseModel. '''
+        ''' Initialize instance of BaseModel.
+
+            Args:
+                *args - Unused argumet vector.
+                **kwargs - If provided, instantiates an object with keys as
+                    attributes and assigns their corresponding values to them.
+        '''
         if kwargs:
             for key, val in kwargs.items():
                 self.__dict__[key] = val
@@ -38,7 +44,7 @@ class BaseModel():
                                          self.__dict__)
 
     def save(self):
-        ''' Update updated_at attr. '''
+        ''' Update updated_at attribute and save changes to JSON file. '''
         from models import storage
         self.updated_at = datetime.now()
         storage.save()
