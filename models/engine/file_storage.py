@@ -1,6 +1,8 @@
 #!/usr/bin?python3
-""" This module defines the FileStorage class.
+""" Define the FileStorage class.
 
+    Attributes:
+        FileStorage - Handle JSON serialization of objects.
 """
 import json
 from models.base_model import BaseModel
@@ -13,7 +15,13 @@ from models.amenity import Amenity
 
 
 class FileStorage():
-    ''' Define all attributes / methods of FileStorage class. '''
+    ''' Handle JSON serialization of objects.
+
+        Attributes:
+            __file_path - Specifies the name of the file to save JSON strings
+                to.
+            __objects: Dictionary of working instances.
+    '''
     __file_path = 'file.json'
     __objects = {}
 
@@ -22,7 +30,7 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        ''' Adds obj entry in __objects. '''
+        ''' Add object to __objects. '''
         self.__objects[obj.__class__.__name__ + '.' + obj.id] = obj
 
     def save(self):
