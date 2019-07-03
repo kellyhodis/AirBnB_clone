@@ -39,6 +39,8 @@ class TestFileStorage(unittest.TestCase):
     def test_storage_var(self):
         ''' Test that storage is a FileStorage variable. '''
         assert type(models.storage) == FileStorage
+        assert hasattr(models.storage, '_FileStorage__objects')
+        assert hasattr(models.storage, '_FileStorage__file_path')
 
     def test_new_method(self):
         ''' Test the new method. '''

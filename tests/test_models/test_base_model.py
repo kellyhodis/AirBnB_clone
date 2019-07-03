@@ -96,3 +96,7 @@ class TestBaseModel(unittest.TestCase):
         new_nd = BaseModel()
         new_len = len(storage._FileStorage__objects)
         assert new_len == obj_len + 1
+        new_nd_dict = new_nd.to_dict()
+        new_d = BaseModel(**new_nd_dict)
+        newer_len = len(storage._FileStorage__objects)
+        assert new_len == newer_len
