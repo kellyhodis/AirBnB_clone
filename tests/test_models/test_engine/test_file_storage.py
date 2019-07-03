@@ -133,3 +133,11 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(AttributeError) as context:
             models.storage.__objects
         self.assertTrue('no attribute' in str(context.exception))
+
+    def test_file_json_existence(self):
+        ''' Test that file.json exists upon running save. '''
+        if os.path.exists('file.json'):
+            os.remove('file.json')
+        f = FileStorage()
+        f.save()
+        self.assertTrue(os.path.exists('file.json'))
