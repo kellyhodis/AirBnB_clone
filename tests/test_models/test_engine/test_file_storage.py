@@ -92,3 +92,28 @@ class TestFileStorage(unittest.TestCase):
         ''' Check if object is in __objects after BaseModel init. '''
         assert (self.b.__class__.__name__ + '.' + str(self.b.id)) in \
             models.storage._FileStorage__objects
+
+    def test_arg_to_all(self):
+        ''' Test all method with arg passed to it. '''
+        with self.assertRaises(TypeError) as context:
+            models.storage.all('hello')
+        self.assertTrue('2 were given' in str(context.exception))
+
+    def test_extra_arg_to_new(self):
+        ''' Test new method with extraneous arg passed to it. '''
+        with self.assertRaises(TypeError) as context:
+            c = BaseModel
+            models.storage.new(c, 'caladan')
+        self.assertTrue('3 were given' in str(context.exception))
+
+    def test_arg_to_save(self):
+        ''' Test save method with arg passed to it. '''
+        with self.assertRaises(TypeError) as context:
+            models.storage.save('sardaukar')
+        self.assertTrue('2 were given' in str(context.exception))
+
+    def test_arg_to_reload(self):
+        ''' Test reload method with arg passed to it. '''
+        with self.assertRaises(TypeError) as context:
+            models.storage.reload('levenbrech')
+        self.assertTrue('2 were given' in str(context.exception))
