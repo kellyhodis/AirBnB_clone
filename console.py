@@ -33,8 +33,10 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         ''' Create new instance of a class, save it, and print its id.
 
-            Args:
-                line - name of class to make new instance of.
+            USAGE: create [OBJ TYPE]
+
+            [OBJ TYPE] is a required argument that can be any of the following:
+                BaseModel, User, State, City, Place, Amenity, Review.
         '''
         if line:
             try:
@@ -48,7 +50,15 @@ class HBNBCommand(cmd.Cmd):
             print('** class name missing **')
 
     def do_show(self, line):
-        ''' Print string repr of instance. '''
+        ''' Get string representation of instance by its id.
+
+            USAGE: show [OBJ TYPE] [OBJ ID]
+
+            [OBJ TYPE] is a required argument that can be any of the following:
+                BaseModel, User, State, City, Place, Amenity, Review.
+            [OBJ ID] is a required argument and is the object's id, which can
+                be accessed via <instance name>.id.
+        '''
         if line == '':
             print("** class name missing **")
         else:
@@ -79,7 +89,15 @@ class HBNBCommand(cmd.Cmd):
                           args[1]])
 
     def do_destroy(self, line):
-        ''' Delete instance of a given class. '''
+        ''' Delete instance of a given class.
+
+            USAGE: destroy [OBJ TYPE] [OBJ ID]
+
+            [OBJ TYPE] is a required argument that can be any of the following:
+                BaseModel, User, State, City, Place, Amenity, Review.
+            [OBJ ID] is a required argument and is the object's ID, which can
+                be accessed via <instance name>.id.
+        '''
         args = list(filter(None, line.split(' ')))
         if len(args) == 0:
             print('** class name missing **')
@@ -106,10 +124,14 @@ class HBNBCommand(cmd.Cmd):
                 return
 
     def do_all(self, line):
-        ''' Print all string representations of all instances.
+        ''' Print string representations of all instances.
 
-            Args:
-                class_name - Optional class.
+            USAGE: all <OBJ TYPE>
+
+            <OBJ TYPE> is an optional argument that, when provided, will only
+                print the string representations of objects of that type. It
+                can be any of the following: BaseModel, User, State, City,
+                Place, Amenity, Review.
         '''
         lst = []
         if line != '':
@@ -131,7 +153,17 @@ class HBNBCommand(cmd.Cmd):
         print(lst)
 
     def do_update(self, line):
-        ''' Update instance attribute and save changes to JSON file. '''
+        ''' Update instance attribute and save changes to JSON file.
+
+            USAGE: update [OBJ TYPE] [OBJ ID] [ATTR NAME] [VALUE]
+
+            [OBJ TYPE] is a required argument that can be any of the following:
+                BaseModel, User, State, City, Place, Amenity, Review.
+            [OBJ ID] is a required argument that is the object's ID, which can
+                be accessed via <instance name>.id.
+            [ATTR NAME] is the object attribute to add/change.
+            [VALUE] is the value to assign to the attribute.
+        '''
         if line == '':
             print("** class name missing **")
         else:
@@ -203,6 +235,7 @@ class HBNBCommand(cmd.Cmd):
             HBNBCommand.do_update(self, line)
         else:
             pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
