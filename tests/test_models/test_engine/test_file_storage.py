@@ -119,3 +119,9 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             models.storage.reload('levenbrech')
         self.assertTrue('2 were given' in str(context.exception))
+
+    def test_no_args_to_new(self):
+        ''' Test new method with no object passed to it. '''
+        with self.assertRaises(TypeError) as context:
+            models.storage.new()
+        self.assertTrue('positional argument' in str(context.exception))

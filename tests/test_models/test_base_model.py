@@ -100,3 +100,9 @@ class TestBaseModel(unittest.TestCase):
         new_d = BaseModel(**new_nd_dict)
         newer_len = len(storage._FileStorage__objects)
         assert new_len == newer_len
+
+    def test_arg_to_save(self):
+        ''' Test save method with extraneous args. '''
+        with self.assertRaises(TypeError) as context:
+            self.b.save('zoal')
+        self.assertTrue('2 were given' in str(context.exception))
