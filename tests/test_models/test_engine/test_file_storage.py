@@ -125,3 +125,11 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             models.storage.new()
         self.assertTrue('positional argument' in str(context.exception))
+
+    def test_attribute_privacy(self):
+        with self.assertRaises(AttributeError) as context:
+            models.storage.__file_path
+        self.assertTrue('no attribute' in str(context.exception))
+        with self.assertRaises(AttributeError) as context:
+            models.storage.__objects
+        self.assertTrue('no attribute' in str(context.exception))
