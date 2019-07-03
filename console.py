@@ -2,8 +2,8 @@
 ''' This module contains the entry point of the command interpreter.
 '''
 import cmd
-import models
 import inspect
+import models
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -171,6 +171,27 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, args[2], args[3])
                 models.storage.save()
 
+    def default(self, line):
+        ''' Overwrite default method. '''
+        line = line.split(' ')
+        elements = line[0].split('.')
+        args = elements[1].split('(')
+        if args[0] == 'all':
+            HBNBCommand.do_all(self, elements[0])
+        elif args[0] == 'count':
+            count = 0
+            for obj in models.storage._FileStorage__objects.values():
+                if elements[0] == obj.__class__.__name__:
+                    count += 1
+            print(count)
+        elif args[0] == 'show':
+            line = elements[0] + ' ' + args[1][:-1]
+            HBNBCommand.do_show(self, line)
+        elif args[0] == 'destroy':
+            line = elements[0] + ' ' + args[1][:-1]
+            HBNBCommand.do_destroy(self, line)
+        else:
+            pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
