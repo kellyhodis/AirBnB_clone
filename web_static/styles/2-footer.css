@@ -7,6 +7,15 @@ footer {
         left: 0;
 }
 
-p {
-        text-align: center;
+.school {
+        height: 60px;
+        position: relative;
+}
+
+.school p {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 }
