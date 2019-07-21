@@ -1,3 +1,2 @@
-![HTML logo](https://www.w3.org/html/logo/downloads/HTML5_Logo_256.png)
-![CSS logo](https://smallimg.pngkey.com/png/small/141-1415392_css3-css-logo-transparent-background.png)
+![HTML and CSS logos](http://www.andysowards.com/blog/assets/html_5_and_css_3_logo_psd_by_webdesignerbag-d4x4y4f.jpg)
 
