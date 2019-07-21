@@ -6,7 +6,7 @@ This project exists to understand the fundamentals of web page design and user i
 
 <img src="https://i.imgur.com/nrp1rhS.png">
 
-Built with: 
+### Built with: 
 <p align="center">
   <img src="http://www.andysowards.com/blog/assets/html_5_and_css_3_logo_psd_by_webdesignerbag-d4x4y4f.jpg">
 </p>
